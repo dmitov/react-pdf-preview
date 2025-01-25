@@ -9,9 +9,9 @@
 ## How to install
 
 ```sh
-pnpm install @react-pdf/preview
-npm install @react-pdf/preview
-yarn instal @react-pdf/preview
+pnpm install @dimitar-mitov/react-pdf-preview
+npm install @dimitar-mitov/react-pdf-preview
+yarn instal @dimitar-mitov/react-pdf-preview
 ```
 
 ## How it works

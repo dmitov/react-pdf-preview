@@ -1,5 +1,5 @@
 {
-  "name": "@react-pdf/preview",
+  "name": "@dimitar-mitov/react-pdf-preview",
   "type": "module",
   "private": false,
   "version": "0.0.1",
@@ -48,5 +48,5 @@
     "url": "https://github.com/dmitov/react-pdf-preview/issues"
   },
   "homepage": "https://github.com/dmitov/react-pdf-preview#readme",
-  "description": ""
+  "description": "<p align=\"center\">   <img src=\"https://user-images.githubusercontent.com/5600341/27505816-c8bc37aa-587f-11e7-9a86-08a2d081a8b9.png\" height=\"280px\">   <p align=\"center\">Dev server for React renderer for creating PDF files on the browser and server<p> </p>"
 }
