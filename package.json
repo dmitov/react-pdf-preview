@@ -4,7 +4,7 @@
   "private": false,
   "version": "0.0.1",
   "bin": {
-    "react-pdf": "./cli.js"
+    "react-pdf": "cli.js"
   },
   "scripts": {
     "dev": "vite",
@@ -36,5 +36,17 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "typescript": "^5.7.3"
-  }
+  },
+  "main": "cli.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmitov/react-pdf-preview.git"
+  },
+  "author": "Dimitar Mitov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmitov/react-pdf-preview/issues"
+  },
+  "homepage": "https://github.com/dmitov/react-pdf-preview#readme",
+  "description": ""
 }
