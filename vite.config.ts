@@ -1,8 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import dynamicImport from "vite-plugin-dynamic-import";
 
 import folderWatcherPlugin from "./plugins/folder-watcher";
-import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineConfig({
   root: "./src",
@@ -11,7 +12,8 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    folderWatcherPlugin("../templates"),
+    tailwindcss(),
+    folderWatcherPlugin("./templates"),
     dynamicImport({
       filter(id) {
         if (id.includes("node_modules")) {

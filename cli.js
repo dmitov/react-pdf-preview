@@ -37,13 +37,7 @@ async function startServer() {
         react(),
         tailwindcss(),
         folderWatcherPlugin(options.dir),
-        dynamicImport({
-          filter(id) {
-            if (id.includes("node_modules")) {
-              return false;
-            }
-          },
-        }),
+        dynamicImport(),
       ],
     });
 
