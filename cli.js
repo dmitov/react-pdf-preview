@@ -5,9 +5,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import dynamicImport from 'vite-plugin-dynamic-import';
-import folderWatcherPlugin from './plugins/folder-watcher.js';
 import tailwindcss from '@tailwindcss/vite'
 import { Command } from 'commander';
+import fileTreePlugin from './plugins/file-tree.js';
 
 const program = new Command();
 
@@ -15,8 +15,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 program
-  .name('my-vite-cli')
-  .description('CLI for Vite with template watching')
+  .name('react-pdf')
+  .description('CLI for react-pdf to preview pdf files')
   .option('--dir <path>', 'path to templates directory', 'src/templates')
   .option('--port <port>', 'port to run on', '3000')
   .parse();
@@ -31,12 +31,12 @@ async function startServer() {
         port: options.port,
       },
       resolve: {
-        alias: { "@": process.cwd() },
+        alias: { "@": path.join(process.cwd(), options.dir) },
       },
       plugins: [
         react(),
         tailwindcss(),
-        folderWatcherPlugin(options.dir),
+        fileTreePlugin(options.dir),
         dynamicImport(),
       ],
     });

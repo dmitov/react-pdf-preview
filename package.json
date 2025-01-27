@@ -18,7 +18,6 @@
     "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.15",
-    "chokidar": "^4.0.3",
     "clsx": "^2.1.1",
     "commander": "^13.0.0",
     "date-fns": "^4.1.0",
@@ -48,5 +47,5 @@
     "url": "https://github.com/dmitov/react-pdf-preview/issues"
   },
   "homepage": "https://github.com/dmitov/react-pdf-preview#readme",
-  "description": "<p align=\"center\">   <img src=\"https://user-images.githubusercontent.com/5600341/27505816-c8bc37aa-587f-11e7-9a86-08a2d081a8b9.png\" height=\"280px\">   <p align=\"center\">Dev server for React renderer for creating PDF files on the browser and server<p> </p>"
+  "description": "Dev server for react-pdf to preview pdf files"
 }

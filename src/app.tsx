@@ -1,5 +1,5 @@
 import { PDFViewer } from "@react-pdf/renderer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import loadable from "@loadable/component";
 import useLocalStorageState from "use-local-storage-state";
 import logo from "./logo.png";
@@ -31,41 +31,50 @@ export default function App() {
   }, [selectedTemplate]);
 
   const handleSelectTemplate = async (file: string) => {
+    // console.log(file);
     setSelectedTemplate(file);
   };
 
-  import.meta.hot.on("pdf-preview:files", async (data: TemplatesData) => {
-    setTemplates(data.msg);
-  });
+  const fetchTreeData = async () => {
+    try {
+      const response = await fetch("/api/file-tree");
+      const data = await response.json();
+
+      setTemplates(data);
+    } catch (error) {
+      console.error("Error fetching file tree:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTreeData();
+  }, []);
 
   import.meta.hot?.on("vite:afterUpdate", () => {
     window.location.reload();
   });
 
-  const treeView = Object.entries(templates).reduce((acc, [dirPath, files]) => {
-    if (dirPath === "_root") {
-      return acc.concat(
-        files.map(({ file, fileName, modifiedTime }) => ({
-          id: file,
-          name: fileName,
-          modifiedTime,
-          onClick: () => handleSelectTemplate(file),
-        }))
-      );
-    }
-    return acc.concat([
-      {
-        id: dirPath,
-        name: dirPath,
-        children: files.map(({ file, fileName, modifiedTime }) => ({
-          id: file,
-          name: fileName,
-          onClick: () => handleSelectTemplate(file),
-          modifiedTime,
-        })),
-      },
-    ]);
-  }, []);
+  const treeView = useMemo(
+    () =>
+      templates.map((item) => ({
+        ...item,
+        ...(!item.children
+          ? {
+              onClick: () => {
+                handleSelectTemplate(item.id);
+              },
+            }
+          : {
+              children: item.children.map((child) => ({
+                ...child,
+                onClick: () => {
+                  handleSelectTemplate(child.id);
+                },
+              })),
+            }),
+      })),
+    [templates]
+  );
 
   return (
     <div className="flex h-screen">
