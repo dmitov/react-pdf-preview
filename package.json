@@ -2,7 +2,7 @@
   "name": "@uixdimi/react-pdf-preview",
   "type": "module",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "bin": {
     "react-pdf": "cli.js"
   },
