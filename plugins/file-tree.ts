@@ -35,14 +35,18 @@ export default function fileTreePlugin(dir: string): Plugin {
 
           if (isDirectory) {
             const children = getFileTree(basePath, filePath);
-            if (children.length > 0) {
-              item.children = children.sort((a, b) => {
-                // Directories first, then alphabetical
-                const aIsDir = !!a.children;
-                const bIsDir = !!b.children;
-                if (aIsDir === bIsDir) return a.name.localeCompare(b.name);
-                return aIsDir ? -1 : 1;
-              });
+            if (children.length > 0 && item.name !== "components") {
+              if (children.length == 1 && children[0].name == "index.tsx") {
+                item.id = `${item.id}/index`;
+              } else {
+                item.children = children.sort((a, b) => {
+                  // Directories first, then alphabetical
+                  const aIsDir = !!a.children;
+                  const bIsDir = !!b.children;
+                  if (aIsDir === bIsDir) return a.name.localeCompare(b.name);
+                  return aIsDir ? -1 : 1;
+                });
+              }
             } else {
               return null;
             }
@@ -53,7 +57,7 @@ export default function fileTreePlugin(dir: string): Plugin {
 
           return item;
         })
-        .filter((item): item is TreeDataItem => item !== null)
+        .filter((item): item is TreeDataItem => item !== null && !item.name.startsWith("_"))
         .sort((a, b) => {
           const aIsDir = !!a.children;
           const bIsDir = !!b.children;
