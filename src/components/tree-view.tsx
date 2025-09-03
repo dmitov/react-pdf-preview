@@ -92,7 +92,7 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeProps>(
     }, [data, expandAll, initialSelectedItemId]);
 
     return (
-      <div className={cn("overflow-hidden relative", className)}>
+      <div className={cn("relative", className)}>
         <TreeItem
           data={data}
           ref={ref}
@@ -227,8 +227,8 @@ const TreeNode = ({
 };
 
 const TreeLeaf = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  HTMLButtonElement,
+  React.HTMLAttributes<HTMLButtonElement> & {
     item: TreeDataItem;
     selectedItemId?: string;
     handleSelectChange: (item: TreeDataItem | undefined) => void;
@@ -247,7 +247,8 @@ const TreeLeaf = React.forwardRef<
     ref
   ) => {
     return (
-      <div
+      <button
+        type="button"
         ref={ref}
         className={cn(
           "ml-5 flex text-left items-center py-2 cursor-pointer before:right-1",
@@ -283,7 +284,7 @@ const TreeLeaf = React.forwardRef<
         <TreeActions isSelected={selectedItemId === item.id}>
           {item.actions}
         </TreeActions>
-      </div>
+      </button>
     );
   }
 );

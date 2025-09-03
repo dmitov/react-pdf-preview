@@ -9,9 +9,9 @@
 ## How to install
 
 ```sh
-pnpm install -D @dimitar-mitov/react-pdf-preview
-npm install -D @dimitar-mitov/react-pdf-preview
-yarn add -D @dimitar-mitov/react-pdf-preview
+pnpm install -D @uixdimi/react-pdf-preview
+npm install -D @uixdimi/react-pdf-preview
+yarn add -D @uixdimi/react-pdf-preview
 ```
 
 ## How it works
@@ -20,6 +20,21 @@ yarn add -D @dimitar-mitov/react-pdf-preview
   "dev": "react-pdf --dir=src/templates --port=3000"
 }
 ```
+
+## Caveats
+1. In order for the previewer to work, all templates must pass down the `DocumentProps` down to the document. Eg:
+```
+export default function Quixote({ creator, ...props }: QuixoteProps) {
+  return (
+    <Document {...props} title="Don Quijote de la Mancha">
+    ...
+```
+
+2. Sometimes you might want to include components in your templates. Options are:
+ - Create `components` folder anywhere you need it, this way it will be ignored by the previewer.
+ - Prefix component filenames with underscore.
+
+See the example template here: [./templates/quixote.tsx](./templates/quixote.tsx)
 
 ## Kudos
 
